@@ -1,0 +1,89 @@
+{
+  "name": "babel-plugin-better-async-await",
+  "version": "1.0.0",
+  "description": "babel plugin for better error handling using async await",
+  "keywords": [
+    "babel",
+    "babel-plugin-transform",
+    "babel-plugin-better-async-await"
+  ],
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "npm run clean && babel src --out-dir dist",
+    "clean": "rimraf dist/*",
+    "prepublish": "npm run lint && npm run test && npm run build",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint src/",
+    "lint:fix": "eslint --fix src/",
+    "contributors:add": "all-contributors add",
+    "contributors:generate": "all-contributors generate"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx}": [
+      "npm run eslint:fix",
+      "git add"
+    ],
+    "src/**/*.{js,jsx,json,css}": [
+      "prettier --config .prettierrc --write",
+      "git add"
+    ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,mjs}"
+    ],
+    "testMatch": [
+      "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
+      "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}"
+    ],
+    "testEnvironment": "jsdom",
+    "testURL": "http://localhost",
+    "transform": {
+      "^.+\\.(js|jsx|mjs)$": "<rootDir>/node_modules/babel-jest"
+    },
+    "transformIgnorePatterns": [
+      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
+    ],
+    "moduleFileExtensions": [
+      "web.js",
+      "js",
+      "json",
+      "web.jsx",
+      "jsx",
+      "node",
+      "mjs"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vivek12345/babel-plugin-better-async-await.git"
+  },
+  "author": "Vivek Nayyar  <vivek.of.nayyar@gmail.com> (https://viveknayyar.in)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vivek12345/babel-plugin-better-async-await/issues"
+  },
+  "homepage": "https://github.com/vivek12345/babel-plugin-better-async-await#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.2.0",
+    "@babel/core": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "@babel/template": "^7.1.2",
+    "@babel/types": "^7.2.0",
+    "all-contributors-cli": "^5.4.1",
+    "babel-core": "^7.0.0-bridge",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^23.6.0",
+    "babel-plugin-tester": "^5.5.2",
+    "eslint": "^5.10.0",
+    "eslint-plugin-react": "^7.11.1",
+    "jest": "^23.6.0",
+    "prettier": "^1.15.3"
+  }
+}
