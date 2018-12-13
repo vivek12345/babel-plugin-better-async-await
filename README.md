@@ -1,4 +1,4 @@
-# 🔔 babel-plugin-better-async-await
+# babel-plugin-better-async-await
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 
 > Write better async await and avoid the try catch statements
