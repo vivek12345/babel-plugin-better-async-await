@@ -146,14 +146,14 @@ async function test() {
 
 ```json
 {
-  "plugins": ["babel-plugin-better-async-awai"]
+  "plugins": ["babel-plugin-better-async-await"]
 }
 ```
 
 ### Via CLI
 
 ```sh
-babel --plugins babel-plugin-better-async-awai script.js
+babel --plugins babel-plugin-better-async-await script.js
 ```
 
 ### Via Node API
@@ -162,7 +162,7 @@ without options:
 ```js
 require('babel-core').transform('code', {
   plugins: [
-    'babel-plugin-better-async-awai',
+    'babel-plugin-better-async-await',
   ],
 });
 ```
