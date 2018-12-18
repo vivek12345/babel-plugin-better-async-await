@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-better-async-await",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "babel plugin for better error handling using async await",
   "keywords": [
     "babel",
