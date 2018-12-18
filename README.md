@@ -2,17 +2,19 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
 
 > Write better async await and avoid the try catch statements
+This plugin works well if the following preset is used
+[better-async-await](https://github.com/vivek12345/babel-preset-better-async-await).
 
 ## 🚚 Installation
 
 ```sh
-npm install --save-dev babel-plugin-better-async-await
+npm install --save-dev babel-preset-better-async-await
 ```
 
 or
 
 ```sh
-yarn add babel-plugin-better-async-await --dev
+yarn add babel-preset-better-async-await --dev
 ```
 
 ## ⚡️ The problem solved
@@ -146,14 +148,14 @@ async function test() {
 
 ```json
 {
-  "plugins": ["babel-plugin-better-async-await"]
+  "presets": ["better-async-await"]
 }
 ```
 
 ### Via CLI
 
 ```sh
-babel --plugins babel-plugin-better-async-await script.js
+babel --presets better-async-await script.js
 ```
 
 ### Via Node API
@@ -161,8 +163,8 @@ babel --plugins babel-plugin-better-async-await script.js
 without options:
 ```js
 require('babel-core').transform('code', {
-  plugins: [
-    'babel-plugin-better-async-await',
+  presets: [
+    'better-async-await',
   ],
 });
 ```

@@ -85,5 +85,8 @@
     "eslint-plugin-react": "^7.11.1",
     "jest": "^23.6.0",
     "prettier": "^1.15.3"
+  },
+  "peerDependencies": {
+    "@babel/template": "^7.1.2"
   }
 }
