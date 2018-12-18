@@ -233,6 +233,19 @@ require('babel-core').transform('code', {
 });
 ```
 
+with option:
+```js
+require('babel-core').transform('code', {
+  presets: [
+    [
+      'better-async-await', {
+        mode: 'strict'
+      }
+    ]
+  ],
+});
+```
+
 > If you are using babel-preset-env or @babel/env or babel-plugin-transform-async-to-generator, then the order of presets matter
 
 without options:
@@ -241,9 +254,45 @@ require('babel-core').transform('code', {
   presets: [
     'better-async-await',
     '@babel/env'
-  ],
+  ]
 });
 ```
+
+with option:
+```js
+require('babel-core').transform('code', {
+  presets: [
+    [
+      'better-async-await', {
+        mode: 'strict'
+      }
+    ],
+    [
+      '@babel/env'
+    ]
+  ]
+});
+```
+
+## Options
+
+### `mode`
+
+  - `strict`:
+In this mode variable names on the left of await statement should match the following rule:-
+
+```js
+const [err, resp] = await api.getData(5);
+  // ...
+```
+*In Strict Mode*
+
+* Variable name on the left for error should be `err` 
+* Variable name on the left for response should be `resp` 
+
+*In non-strict mode*
+
+* Variable names on the left can be `anything`
 
 ## 👍 Contribute
 
