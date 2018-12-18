@@ -192,7 +192,7 @@ async function test() {
 
 ## ⭐ Usage
 
-### Via `.babelrc` (Recommended)
+### Via `.babelrc` (Recommended) without options
 
 **.babelrc**
 
@@ -207,6 +207,40 @@ async function test() {
 ```json
 {
   "presets": ["better-async-await", "@babel/env"]
+}
+```
+### Via `.babelrc` (Recommended) with options
+
+**.babelrc**
+
+```json
+{
+  "presets": [
+    [
+      "better-async-await",
+      {
+        mode: 'strict'
+      }
+    ]
+  ]
+}
+```
+
+> If you are using babel-preset-env or @babel/env or babel-plugin-transform-async-to-generator, then the order of presets matter
+
+```json
+{
+  "presets": [
+    [
+      "better-async-await",
+      {
+        mode: 'strict'
+      },
+    ],
+    [
+      "@babel/env"
+    ]
+  ]
 }
 ```
 
