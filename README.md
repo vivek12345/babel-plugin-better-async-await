@@ -85,50 +85,55 @@ We will transform your async await code so that it works the `[err, resp]` way.
 
 ## 📒 Examples
 
-**In**
+**Before**
+```javascript
+async function test() {
+  let resp;
+  try {
+    resp = await api.getData(5);
+  } catch(err)
+    handleError();
+  }
+}
+```
+
+**After**
+
 ```javascript
 async function test() {
   const [err, resp] = await api.getData(5);
+  if(err) handleError();
+  // else do something with the response
 }
-
 ```
 
-**Out**
+**Before**
 ```javascript
 async function test() {
-  const [err, resp] = await api.getData(5).then(resp => {
-    return [null, resp];
-  }).catch(error => {
-    return [error];
+  let resp;
+  try {
+    resp = await getData;
+  } catch(err)
+    handleError();
+  }
+}
+
+function getData() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(true);
+    }, 1000);
   });
 }
 ```
-======================================
 
-**In**
-```javascript
-async function test() {
-  const [err, resp] = await getData(5);
-}
+**After**
 
-```
-
-**Out**
-```javascript
-async function test() {
-  const [err, resp] = await getData(5).then(resp => {
-    return [null, resp];
-  }).catch(error => {
-    return [error];
-  });
-}
-```
-======================================
-
-**In**
 ```javascript
 async function test() {
   const [err, resp] = await getData
+  if(err) handleError();
+  // else do something with the response
 }
 
 function getData() {
@@ -140,69 +145,28 @@ function getData() {
 }
 ```
 
-**Out**
+**Before**
 ```javascript
 async function test() {
-  const [err, resp] = await getData().then(resp => {
-    return [null, resp];
-  }).catch(error => {
-    return [error];
-  });
-}
-
-function getData() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(true);
-    }, 1000);
-  });
+  let resp;
+  try {
+    resp = await fetch('http://some-rest-endpoint');
+  } catch(err)
+    handleError();
+  }
 }
 ```
-======================================
 
-**In**
+**After**
+
 ```javascript
 async function test() {
-  const [err, resp] = await new Promise((resolve, reject) => {
-    resolve(true);
-  });
-}
-
-```
-
-**Out**
-```javascript
-async function test() {
-  const [err, resp] = await new Promise((resolve, reject) => {
-    resolve(true);
-  }).then(resp => {
-    return [null, resp];
-  }).catch(error => {
-    return [error];
-  });
+  const [err, resp] = await fetch('http://some-rest-endpoint');
+  if(err) handleError();
+  // else do something with the response
 }
 ```
-======================================
 
-**In**
-```javascript
-async function test() {
-  const [err, resp] = await Promise.resolve(true);
-}
-
-```
-
-**Out**
-```javascript
-async function test() {
-  const [err, resp] = await Promise.resolve(true).then(resp => {
-    return [null, resp];
-  }).catch(error => {
-    return [error];
-  });
-}
-```
-======================================
 
 ## ⭐ Usage
 
