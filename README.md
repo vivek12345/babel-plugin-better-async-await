@@ -83,7 +83,7 @@ async function completeApplicationFlow() {
 > Using this babel preset you could write async await in the alternate approach mentioned above.
 We will transform your async await code so that it works the `[err, resp]` way.
 
-## 📒 Examples
+## 📒 Examples of using it in your code
 
 **Before**
 ```javascript
@@ -167,6 +167,28 @@ async function test() {
 }
 ```
 
+## 📒 Babel Tranformation
+
+**In**
+
+```javascript
+async function test() {
+  const [err, resp] = await fetch('http://some-rest-endpoint');
+}
+```
+
+**Out**
+
+```javascript
+async function test() {
+  const [err, resp] = await fetch('http://some-rest-endpoint').then(resp => {
+    return [null, resp];
+  }).catch(error => {
+    return [error];
+  })
+}
+```
+
 
 ## ⭐ Usage
 
@@ -177,6 +199,14 @@ async function test() {
 ```json
 {
   "presets": ["better-async-await"]
+}
+```
+
+> If you are using babel-preset-env or @babel/env or babel-plugin-transform-async-to-generator, then ths order or presets matter
+
+```json
+{
+  "presets": ["better-async-await", "@babel/env"]
 }
 ```
 
