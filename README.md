@@ -219,7 +219,7 @@ async function test() {
     [
       "better-async-await",
       {
-        mode: 'strict'
+        "mode": "strict"
       }
     ]
   ]
@@ -234,7 +234,7 @@ async function test() {
     [
       "better-async-await",
       {
-        mode: 'strict'
+        "mode": "strict"
       },
     ],
     [
