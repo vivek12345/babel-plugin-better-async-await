@@ -202,7 +202,7 @@ async function test() {
 }
 ```
 
-> If you are using babel-preset-env or @babel/env or babel-plugin-transform-async-to-generator, then ths order or presets matter
+> If you are using babel-preset-env or @babel/env or babel-plugin-transform-async-to-generator, then the order of presets matter
 
 ```json
 {
@@ -216,6 +216,12 @@ async function test() {
 babel --presets better-async-await script.js
 ```
 
+> If you are using babel-preset-env or @babel/env or babel-plugin-transform-async-to-generator, then the order of presets matter
+
+```sh
+babel --presets better-async-await @babel/env script.js
+```
+
 ### Via Node API
 
 without options:
@@ -223,6 +229,18 @@ without options:
 require('babel-core').transform('code', {
   presets: [
     'better-async-await',
+  ],
+});
+```
+
+> If you are using babel-preset-env or @babel/env or babel-plugin-transform-async-to-generator, then the order of presets matter
+
+without options:
+```js
+require('babel-core').transform('code', {
+  presets: [
+    'better-async-await',
+    '@babel/env'
   ],
 });
 ```
