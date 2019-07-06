@@ -5,6 +5,10 @@
 This plugin works well if the following preset is used
 [better-async-await](https://github.com/vivek12345/babel-preset-better-async-await).
 
+💡For usage with CRA and any app which relies on @babel/env or on ordering of presets and plugins, we would highly recommend using [`better-async-await.macro`](https://github.com/vivek12345/better-async-await.macro)
+
+> NOTE: If you are using babel-preset-env, default CRA config or @babel/env or babel-plugin-transform-async-to-generator, then the order of presets matter and this plugin can not be used.
+
 ## 🚚 Installation
 
 ```sh
@@ -202,47 +206,8 @@ async function test() {
 }
 ```
 
-> If you are using babel-preset-env or @babel/env or babel-plugin-transform-async-to-generator, then the order of presets matter
+> NOTE: If you are using babel-preset-env, default CRA config or @babel/env or babel-plugin-transform-async-to-generator, then the order of presets matter and this plugin can not be used.
 
-```json
-{
-  "presets": ["better-async-await", "@babel/env"]
-}
-```
-### Via `.babelrc` (Recommended) with options
-
-**.babelrc**
-
-```json
-{
-  "presets": [
-    [
-      "better-async-await",
-      {
-        "mode": "strict"
-      }
-    ]
-  ]
-}
-```
-
-> If you are using babel-preset-env or @babel/env or babel-plugin-transform-async-to-generator, then the order of presets matter
-
-```json
-{
-  "presets": [
-    [
-      "better-async-await",
-      {
-        "mode": "strict"
-      },
-    ],
-    [
-      "@babel/env"
-    ]
-  ]
-}
-```
 
 ### Via CLI
 
@@ -250,15 +215,11 @@ async function test() {
 babel --presets better-async-await script.js
 ```
 
-> If you are using babel-preset-env or @babel/env or babel-plugin-transform-async-to-generator, then the order of presets matter
+> NOTE: If you are using babel-preset-env, default CRA config or @babel/env or babel-plugin-transform-async-to-generator, then the order of presets matter and this plugin can not be used.
 
-```sh
-babel --presets better-async-await @babel/env script.js
-```
 
 ### Via Node API
 
-without options:
 ```js
 require('babel-core').transform('code', {
   presets: [
@@ -267,66 +228,7 @@ require('babel-core').transform('code', {
 });
 ```
 
-with option:
-```js
-require('babel-core').transform('code', {
-  presets: [
-    [
-      'better-async-await', {
-        mode: 'strict'
-      }
-    ]
-  ],
-});
-```
-
-> If you are using babel-preset-env or @babel/env or babel-plugin-transform-async-to-generator, then the order of presets matter
-
-without options:
-```js
-require('babel-core').transform('code', {
-  presets: [
-    'better-async-await',
-    '@babel/env'
-  ]
-});
-```
-
-with option:
-```js
-require('babel-core').transform('code', {
-  presets: [
-    [
-      'better-async-await', {
-        mode: 'strict'
-      }
-    ],
-    [
-      '@babel/env'
-    ]
-  ]
-});
-```
-
-## Options
-
-### `mode`
-
-  - `strict`:
-In this mode variable names on the left of await statement should match the following rule:-
-
-```js
-const [err, resp] = await api.getData(5);
-  // ...
-```
-*In Strict Mode*
-
-* Variable name on the left for error should be `err` 
-* Variable name on the left for response should be `resp` 
-
-*In non-strict mode*
-
-* Variable names on the left can be `anything`
+> NOTE: If you are using babel-preset-env, default CRA config or @babel/env or babel-plugin-transform-async-to-generator, then the order of presets matter and this plugin can not be used.
 
 ## 👍 Contribute
 
